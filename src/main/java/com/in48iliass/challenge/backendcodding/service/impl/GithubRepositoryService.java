@@ -28,7 +28,7 @@ private BackendCodingServiceProxy proxy;
 
         for(Item item:githubRepository.getItems()){
             if(item.getLanguage() != null)
-                domains.put(item.getLanguage(),GithubRepositoryDto.fromItem(item));
+                domains.put(item.getLanguage().toLowerCase(),GithubRepositoryDto.fromItem(item));
         }
         return domains;
     }

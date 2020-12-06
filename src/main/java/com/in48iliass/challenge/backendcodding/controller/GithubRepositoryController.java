@@ -26,7 +26,7 @@ public ResponseEntity<Set<String>>  getAllLanguages() {
 }
     @GetMapping("/{language}")
 public ResponseEntity<LanguageDetails>  getAllDetails(@PathVariable String language){
-    List<GithubRepositoryDto> githubRepositoryDtos = new ArrayList<>(githubRepositoryService.getAllLanguages().get(language));
+    List<GithubRepositoryDto> githubRepositoryDtos = new ArrayList<>(githubRepositoryService.getAllLanguages().get(language.toLowerCase()));
    return ResponseEntity.ok( new LanguageDetails(githubRepositoryDtos.size(),githubRepositoryDtos) );
 }
 }
