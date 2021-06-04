@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+
 public class GithubRepository {
     private Long total_count;
     private Boolean incomplete_results;
