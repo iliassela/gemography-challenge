@@ -25,12 +25,14 @@ private BackendCodingServiceProxy proxy;
         GithubRepository githubRepository = proxy.retriveRepositories();
 
         Multimap<String, GithubRepositoryDto> domains = ArrayListMultimap.create();
+       if(githubRepository != null) {
+           for (Item item : githubRepository.getItems()) {
+               if (item.getLanguage() != null)
+                   domains.put(item.getLanguage().toLowerCase(), GithubRepositoryDto.fromItem(item));
+           }
 
-        for(Item item:githubRepository.getItems()){
-            if(item.getLanguage() != null)
-                domains.put(item.getLanguage().toLowerCase(),GithubRepositoryDto.fromItem(item));
-        }
-        return domains;
+       }
+       return domains;
     }
 
 
