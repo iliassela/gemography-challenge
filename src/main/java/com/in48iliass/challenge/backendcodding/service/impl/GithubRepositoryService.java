@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.MultiValueMap;
 
 import javax.annotation.Nullable;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 
@@ -22,7 +23,14 @@ public class GithubRepositoryService implements IGithubRepositoryService {
 private BackendCodingServiceProxy proxy;
     @Override
     public Multimap<String,GithubRepositoryDto> getAllLanguages()  {
-        GithubRepository githubRepository = proxy.retriveRepositories();
+        Date today = new Date();
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(today);
+        cal.add(Calendar.DAY_OF_MONTH, -30);
+        Date today30 = cal.getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(today30);
+        GithubRepository githubRepository = proxy.retriveRepositories(strDate);
 
         Multimap<String, GithubRepositoryDto> domains = ArrayListMultimap.create();
        if(githubRepository != null) {
